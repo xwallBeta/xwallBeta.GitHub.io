@@ -145,6 +145,100 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/02/25/My-first-Post/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="xwall">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="xwallBeta">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/02/25/My-first-Post/" class="post-title-link" itemprop="url">完美实现手机数据线投屏到Win10电脑</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-02-25 11:29:07 / 修改时间：11:31:55" itemprop="dateCreated datePublished" datetime="2021-02-25T11:29:07+08:00">2021-02-25</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="缘起"><a href="#缘起" class="headerlink" title="缘起"></a>缘起</h4><ul>
+<li><p><strong>两个工具</strong><br>scrcpy:投屏工具<a target="_blank" rel="noopener" href="https://github.com/Genymobile/scrcpy">scrcpy</a><br>autoadb：连接后adb自动启动scrcpy<a target="_blank" rel="noopener" href="https://github.com/rom1v/autoadb">autoadb</a></p>
+</li>
+<li><p><strong>解决目标</strong><br>实现无命令行框在电脑插入数据线后自动投屏</p>
+</li>
+<li><p><strong>需求分析，难点及解决思路</strong><br>scrcpy 1.17下载后自带的命令中有无控制台（命令行）的方案  scrcpy-noconsole.vbs         </p>
+<p>困难在于公司电脑无法直接运行vbs命令且不能自动投屏，因此需要autoadb建立快捷方式的方法来映射程序去自动启动scrcpy。<br><u>右键建立vbs的快捷方式后在Target前加入C:\Windows\System32\wscript.exe //e:vbscript</u></p>
+</li>
+</ul>
+<hr>
+<h4 id="操作步骤"><a href="#操作步骤" class="headerlink" title="操作步骤"></a>操作步骤</h4><ol>
+<li>从github下载最新版的两个工具文件，放置在同一目录</li>
+<li>在该目录建一个autoadb.vbs文件，启动autoadb及scrcpy</li>
+<li>右键此vbs文件建立快捷方式 在Target前加入C:\Windows\System32\wscript.exe //e:vbscript</li>
+<li>Win10中按键盘上的win+R弹出Run窗口，输入shell:startup 点击OK</li>
+<li>将第3步建立的快捷方式复制到第4步打开的自动启动文件夹内 </li>
+</ol>
+<hr>
+<hr>
+<h4 id="详解"><a href="#详解" class="headerlink" title="详解"></a>详解</h4><ul>
+<li><strong>第2步的vbs代码实现了无控制台（命令行)的自动启动，如下分别介绍</strong></li>
+</ul>
+<p><em>CreateObject(“Wscript.Shell”).Run “cmd /c autoadb scrcpy -s {} -Sw –window-x 1920 –window-y 27 –window-width 512 –window-height 1024”, 0, false</em></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CreateObject(&quot;Wscript.Shell&quot;).Run &quot;cmd &#x2F;c .....&quot;, 0, false</span><br></pre></td></tr></table></figure>
+
+<p>是实现无控制台（命令行)的vbs代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">autoadb scrcpy -s &#123;&#125; </span><br></pre></td></tr></table></figure>
+
+<p>是autoadb启动scrcpy的代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-Sw --window-x 1920 --window-y 27 --window-width 512 --window-height 1024 </span><br></pre></td></tr></table></figure>
+
+<p>是 scrcpy的参数，可根据需求进行定制</p>
+<ul>
+<li><strong>第3步快捷方式</strong></li>
+</ul>
+<p><img src="../.assets/autoadbShortCut.png"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2021/02/25/hello-world/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -277,7 +371,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">1</span>
+          <span class="site-state-item-count">2</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
